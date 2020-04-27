@@ -1,0 +1,49 @@
+<div class="row">
+  <div class="col-md-5 pb-4 pb-lg-0">
+    <form action="/send-sms" method="POST" class="card card-body">
+      <div class="form-group">
+        <input type="text" name="message" class="form-control" placeholder="Tu mensaje..." autofocus>
+      </div>
+      <div class="form-group">
+        <input type="tel" name="phone" class="form-control" value="+123456789">
+      </div>
+      <button class="btn btn-primary btn-block">
+        Enviar
+      </button class="btn">
+    </form>
+  </div>
+
+  <div class="col-md-7">
+    {{# if messages }}
+      <ul class="list-group scroll" id="messagesList">
+        {{# each messages }}
+          <li class="list-group-item list-group-item-action">
+            <p class="text-success">
+              <i class="fas fa-comment-dots text-muted mr-1"></i>
+              {{ body }}
+              <span class="text-white-50">
+                - {{ timeago createdAt }}
+              </span>
+            </p>
+            <small class="text-muted d-block">
+              <i class="fas fa-mobile-alt mr-1"></i>
+              {{ to }}
+              {{ from }}
+            </small>
+            <small class="text-muted">
+               <i class="fas fa-database mr-1"></i>
+              {{ _id }}
+            </small>
+          </li>
+        {{/ each }}
+      </ul>
+    {{ else }}
+      <div class="card card-body">
+        <span>
+          <i class="fas fa-exclamation-circle mr-1"></i>
+          No hay mensajes para mostrar.
+        </span>
+      </div>
+    {{/ if }}
+  </div>
+</div>
